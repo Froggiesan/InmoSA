@@ -5,6 +5,9 @@
  */
 package inmobiliaria_empesa;
 
+import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alejandro y Marta
@@ -40,10 +43,12 @@ public class Calculadora extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         plazoJBox = new javax.swing.JComboBox<>();
         interesjtext = new javax.swing.JTextField();
-        jTextFieldcuota = new javax.swing.JTextField();
-        botoninteres = new javax.swing.JButton();
+        cuotatextfield = new javax.swing.JTextField();
         botoncuota = new javax.swing.JButton();
         jButtoncerrar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        totalPagar = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -58,6 +63,16 @@ public class Calculadora extends javax.swing.JFrame {
         importetextfield.setBackground(new java.awt.Color(255, 255, 255));
         importetextfield.setForeground(new java.awt.Color(0, 0, 0));
         importetextfield.setText("0,00");
+        importetextfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importetextfieldActionPerformed(evt);
+            }
+        });
+        importetextfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                importetextfieldKeyTyped(evt);
+            }
+        });
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Plazo de amortizacion:");
@@ -85,17 +100,23 @@ public class Calculadora extends javax.swing.JFrame {
                 interesjtextActionPerformed(evt);
             }
         });
+        interesjtext.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                interesjtextKeyTyped(evt);
+            }
+        });
 
-        jTextFieldcuota.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldcuota.setForeground(new java.awt.Color(0, 0, 0));
-        jTextFieldcuota.setText("0,00");
+        cuotatextfield.setBackground(new java.awt.Color(255, 255, 255));
+        cuotatextfield.setForeground(new java.awt.Color(0, 0, 0));
+        cuotatextfield.setText("0,00");
+        cuotatextfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuotatextfieldActionPerformed(evt);
+            }
+        });
 
-        botoninteres.setBackground(new java.awt.Color(0, 153, 153));
-        botoninteres.setForeground(new java.awt.Color(255, 255, 255));
-        botoninteres.setText("Calcular interés");
-
-        botoncuota.setBackground(new java.awt.Color(0, 153, 153));
-        botoncuota.setForeground(new java.awt.Color(255, 255, 255));
+        botoncuota.setBackground(null);
+        botoncuota.setForeground(new java.awt.Color(0, 0, 0));
         botoncuota.setText("Calcular cuota");
         botoncuota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,13 +124,21 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
-        jButtoncerrar.setBackground(java.awt.Color.white);
+        jButtoncerrar.setBackground(new java.awt.Color(204, 255, 255));
         jButtoncerrar.setText("Cerrar ventana");
         jButtoncerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtoncerrarActionPerformed(evt);
             }
         });
+
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Total a pagar:");
+
+        totalPagar.setForeground(new java.awt.Color(0, 0, 0));
+        totalPagar.setText("0");
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_empresa/64.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -118,36 +147,46 @@ public class Calculadora extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(plazoJBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(importetextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldcuota, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(interesjtext, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botoninteres, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botoncuota, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(297, Short.MAX_VALUE))
+                            .addComponent(interesjtext, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(plazoJBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(importetextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(cuotatextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botoncuota, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(totalPagar)))
+                        .addGap(0, 291, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtoncerrar)
-                .addGap(17, 17, 17))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtoncerrar))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel9))
                 .addGap(4, 4, 4)
                 .addComponent(importetextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
@@ -156,23 +195,24 @@ public class Calculadora extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(plazoJBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(interesjtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botoninteres))
-                .addGap(49, 49, 49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(interesjtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldcuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cuotatextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botoncuota))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(jButtoncerrar)
-                .addGap(49, 49, 49))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(totalPagar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                .addComponent(jButtoncerrar))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -211,6 +251,10 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void interesjtextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_interesjtextActionPerformed
         // TODO add your handling code here:
+        int cantidad= Integer.parseInt(importetextfield.getText());
+        double cuota = Double.parseDouble(cuotatextfield.getText());
+        int plazo = Integer.parseInt((String)plazoJBox.getSelectedItem());
+        double interes = (plazo*12)*cuota ;
     }//GEN-LAST:event_interesjtextActionPerformed
 
     private void botoncuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncuotaActionPerformed
@@ -219,10 +263,49 @@ public class Calculadora extends javax.swing.JFrame {
         double interes = Double.parseDouble(interesjtext.getText());
         int plazo = Integer.parseInt((String)plazoJBox.getSelectedItem());
         double cuota = (cantidad+(cantidad*(interes/100)))/(plazo*12);
-        jTextFieldcuota.setText(String.valueOf(cuota));
+        cuotatextfield.setText(String.valueOf(cuota));
+        double totalAPagar = (cantidad/interes)+cantidad;
+        
+        DecimalFormat formato1 = new DecimalFormat("#.00");
+        String TotalString = String.valueOf(formato1.format(totalAPagar));
+        totalPagar.setText(TotalString);
+        
         
         
     }//GEN-LAST:event_botoncuotaActionPerformed
+
+    private void cuotatextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuotatextfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cuotatextfieldActionPerformed
+
+    private void importetextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importetextfieldActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_importetextfieldActionPerformed
+
+    private void interesjtextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_interesjtextKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            
+            JOptionPane.showMessageDialog(rootPane,"Ingresar solo números");
+        }
+    }//GEN-LAST:event_interesjtextKeyTyped
+
+    private void importetextfieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_importetextfieldKeyTyped
+        // TODO add your handling code here:
+        char validar = evt.getKeyChar();
+        
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            
+            JOptionPane.showMessageDialog(rootPane,"Ingresar solo números");
+        }
+    }//GEN-LAST:event_importetextfieldKeyTyped
 
     /**
      * @param args the command line arguments
@@ -262,7 +345,7 @@ public class Calculadora extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botoncuota;
-    private javax.swing.JButton botoninteres;
+    private javax.swing.JTextField cuotatextfield;
     private javax.swing.JTextField importetextfield;
     private javax.swing.JTextField interesjtext;
     private javax.swing.JButton jButtoncerrar;
@@ -273,9 +356,11 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextFieldcuota;
     private javax.swing.JComboBox<String> plazoJBox;
+    private javax.swing.JLabel totalPagar;
     // End of variables declaration//GEN-END:variables
 }
