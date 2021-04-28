@@ -2,9 +2,12 @@ package inmobiliaria_empesa;
 
 
 import Atxy2k.CustomTextField.RestrictedTextField;
+import clases_usuarios.Trabajador;
+import clases_usuarios.Usuario;
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import inmobiliaria_empesa.home_clientes;
 import java.awt.event.WindowEvent;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /*
@@ -165,35 +168,42 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String usuario = jTextFieldUsuario.getText();
         String password = jPasswordFieldContraseña.getText();
+        Usuario prueba1 = new Usuario("Marta", "Martinez", "Sanchez", new Date(1987,06,10), "662474455", "M", 6, "Sasha", "1234");
+        Usuario prueba4 = new Usuario("Alex", "Martinez", "Sanchez", new Date(1987,06,10), "662474435", "H", 1, "Froggie", "1234");
+        Usuario prueba5 = new Usuario("Victor", "Martinez", "Sanchez", new Date(1987,06,10), "662474255", "H", 2, "Labois", "1234");
+        Trabajador t1= new Trabajador("Alex", "Martinez", "Sanchez", new Date(1987,06,10), "662474435", "H", 1, "Froggie", "1234", 2, 4);
+        Trabajador t2= new Trabajador("Marta", "Martinez", "Sanchez", new Date(1987,06,10), "662474455", "M", 6, "Sasha", "1234", 1, 2);
+        Trabajador t3= new Trabajador("Victor", "Martinez", "Sanchez", new Date(1987,06,10), "662474255", "H", 2, "Labois", "1234",3,15);
+
+
+        Usuario[] usuarios = new Usuario[]{
+                prueba1,
+                prueba4,
+                prueba5,
+                t1,
+                t2,
+                t3,
+                };
+        
         
         if(usuario.isEmpty() || password.isEmpty()){
             JOptionPane.showMessageDialog(null,"Algún campo esta vacio");
         }else{
-            if(usuario.equals("usuario1") && password.equals("1234") ||usuario.equals("trabajador1")&& password.equals("1234") ){
-                if(usuario.equals("trabajador1")&& password.equals("1234")){
+            for(Usuario os:usuarios){
+                if(usuario.equalsIgnoreCase(os.getNick()) && password.equals(os.getContrasena())){
                     JOptionPane.showMessageDialog(null, "¡Bienvenido y buena jornada!");
                     Home_pre_login home_pre=new Home_pre_login();
                     home_pre.setVisible(false);
                     home_trabajadores home2 = new home_trabajadores();
                     home2.setVisible(true);
                     this.dispose();
+                    break;
                 
                 }
-                if(usuario.equals("usuario1") && password.equals("1234")){
-                    JOptionPane.showMessageDialog(null, "Bienvenido");
-                    Home_pre_login home_pre=new Home_pre_login();
-                    home_pre.setVisible(false);
-                    home_pre.dispose();
-
-                    home_clientes pc=new home_clientes();
-                    pc.setVisible(true);
-                    this.dispose();
-                }
-               
                 
-            }else{
-                JOptionPane.showMessageDialog(null, "Su usuario o contraseña es incorrecto");
+                
             }
+            JOptionPane.showMessageDialog(null, "Su usuario o contraseña es incorrecto");
             
             }
                 
