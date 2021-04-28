@@ -1,10 +1,11 @@
 package inmobiliaria_empesa;
 
-
+import clases_usuarios.*;
 import Atxy2k.CustomTextField.RestrictedTextField;
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import inmobiliaria_empesa.home_clientes;
 import java.awt.event.WindowEvent;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /*
@@ -22,10 +23,7 @@ public class login extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
-    public login() {
-        initComponents();
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +41,7 @@ public class login extends javax.swing.JFrame {
         jTextFieldUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPasswordFieldContraseña = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        ingresar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         jButton4.setText("jButton4");
@@ -93,11 +91,11 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(204, 255, 204));
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ingresar.setBackground(new java.awt.Color(204, 255, 204));
+        ingresar.setText("Ingresar");
+        ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ingresarActionPerformed(evt);
             }
         });
 
@@ -123,7 +121,7 @@ public class login extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(ingresar, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -139,7 +137,7 @@ public class login extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jPasswordFieldContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(ingresar)
                 .addContainerGap())
         );
 
@@ -161,40 +159,44 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
         // TODO add your handling code here:
         String usuario = jTextFieldUsuario.getText();
         String password = jPasswordFieldContraseña.getText();
+        Usuario prueba1 = new Usuario("Marta", "Martinez", "Sanchez", new Date(1987,06,10), "662474455", "M", 6, "Sasha", "1234");
+        Usuario prueba4 = new Usuario("Alex", "Martinez", "Sanchez", new Date(1987,06,10), "662474435", "H", 1, "Froggie", "1234");
+        Usuario prueba5 = new Usuario("Victor", "Martinez", "Sanchez", new Date(1987,06,10), "662474255", "H", 2, "Labois", "1234");
+        Trabajador t1= new Trabajador("Alex", "Martinez", "Sanchez", new Date(1987,06,10), "662474435", "H", 1, "Froggie", "1234", 2, 4);
+        Trabajador t2= new Trabajador("Marta", "Martinez", "Sanchez", new Date(1987,06,10), "662474455", "M", 6, "Sasha", "1234", 1, 2);
+        Trabajador t3= new Trabajador("Victor", "Martinez", "Sanchez", new Date(1987,06,10), "662474255", "H", 2, "Labois", "1234",3,15);
+
+
+        Usuario[] usuarios = new Usuario[]{
+                prueba1,
+                prueba4,
+                prueba5,
+                t1,
+                t2,
+                t3,
+                };
+            
+    
         
         if(usuario.isEmpty() || password.isEmpty()){
             JOptionPane.showMessageDialog(null,"Algún campo esta vacio");
         }else{
-            if(usuario.equals("usuario1") && password.equals("1234") ||usuario.equals("trabajador1")&& password.equals("1234") ){
-                if(usuario.equals("trabajador1")&& password.equals("1234")){
+            for(Usuario os:usuarios){
+                if(usuario.equals(os.getNick()) && password.equals(os.getContrasena())){
                     JOptionPane.showMessageDialog(null, "¡Bienvenido y buena jornada!");
                     Home_pre_login home_pre=new Home_pre_login();
                     home_pre.setVisible(false);
                     home_trabajadores home2 = new home_trabajadores();
                     home2.setVisible(true);
                     this.dispose();
-                
                 }
-                if(usuario.equals("usuario1") && password.equals("1234")){
-                    JOptionPane.showMessageDialog(null, "Bienvenido");
-                    Home_pre_login home_pre=new Home_pre_login();
-                    home_pre.setVisible(false);
-                    home_pre.dispose();
-
-                    home_clientes pc=new home_clientes();
-                    pc.setVisible(true);
-                    this.dispose();
-                }
-               
                 
-            }else{
-                JOptionPane.showMessageDialog(null, "Su usuario o contraseña es incorrecto");
             }
-            
+            JOptionPane.showMessageDialog(null, "Su usuario o contraseña es incorrecto");
             }
                 
             
@@ -202,7 +204,7 @@ public class login extends javax.swing.JFrame {
             
        
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ingresarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -256,7 +258,7 @@ public class login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton ingresar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

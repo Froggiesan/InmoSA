@@ -14,7 +14,7 @@ import oracle.ucp.jdbc.PoolDataSource;
 public class acceso_a_BD{
     // The following connection string is pointing to Oracle XE database.
     // Change this URL to match your target Oracle database (XE or else)
-    final static String DB_URL="jdbc:oracle:thin:@//localhost:1521:XE";
+    final static String DB_URL="jdbc:oracle:thin:@//localhost:9090:XE";
     // Enter the database user
     final static String DB_USER = "alex";
     // Enter the database password
