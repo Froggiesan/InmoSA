@@ -19,6 +19,11 @@ foreign key(id_vivienda)references viviendas(id)
 
 
 
+
+
+
+
+
 insert into viviendas(calle,descripcion,)
 values('Calle arcoiris','Bonita casa de perro, diseñada como la de paris Hilton, por solo tres millones euros')
 

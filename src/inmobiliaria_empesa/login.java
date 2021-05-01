@@ -172,11 +172,11 @@ public class login extends javax.swing.JFrame {
         Usuario prueba4 = new Usuario("Alex", "Martinez", "Sanchez", new Date(1987,06,10), "662474435", "H", 1, "Froggie", "1234");
         Usuario prueba5 = new Usuario("Victor", "Martinez", "Sanchez", new Date(1987,06,10), "662474255", "H", 2, "Labois", "1234");
         Trabajador t1= new Trabajador("Alex", "Martinez", "Sanchez", new Date(1987,06,10), "662474435", "H", 1, "Froggie", "1234", 2, 4);
-        Trabajador t2= new Trabajador("Marta", "Martinez", "Sanchez", new Date(1987,06,10), "662474455", "M", 6, "Sasha", "1234", 1, 2);
-        Trabajador t3= new Trabajador("Victor", "Martinez", "Sanchez", new Date(1987,06,10), "662474255", "H", 2, "Labois", "1234",3,15);
+        Trabajador t2= new Trabajador("Marta", "Martinez", "Sanchez", new Date(1987,06,10), "662474455", "M", 6, "Sasha", "martobias87", 1, 2);
+        Trabajador t3= new Trabajador("Victor", "Martinez", "Sanchez", new Date(1987,06,10), "662474255", "H", 2, "Labosis", "1234",3,15);
 
 
-        Usuario[] usuarios = new Usuario[]{
+        Usuario[] trabajadores = new Usuario[]{
                 prueba1,
                 prueba4,
                 prueba5,
@@ -189,7 +189,7 @@ public class login extends javax.swing.JFrame {
         if(usuario.isEmpty() || password.isEmpty()){
             JOptionPane.showMessageDialog(null,"Algún campo esta vacio");
         }else{
-            for(Usuario os:usuarios){
+            for(Usuario os:trabajadores){
                 if(usuario.equalsIgnoreCase(os.getNick()) && password.equals(os.getContrasena())){
                     JOptionPane.showMessageDialog(null, "¡Bienvenido y buena jornada!");
                     Home_pre_login home_pre=new Home_pre_login();
@@ -200,13 +200,12 @@ public class login extends javax.swing.JFrame {
                     break;
                 
                 }
-                
-                
             }
-            JOptionPane.showMessageDialog(null, "Su usuario o contraseña es incorrecto");
             
-            }
-                
+            }JOptionPane.showMessageDialog(null, "Su usuario o contraseña es incorrecto");
+        
+            
+              
             
             
             
